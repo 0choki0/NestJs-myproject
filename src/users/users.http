@@ -7,13 +7,17 @@ GET http://localhost:3000/users
 Content-Type: application/json
 
 ### Get user
-GET http://localhost:3000/users/redirect/docs
+GET http://localhost:3000/users/1
 Content-Type: application/json
 
 ### Patch user
 PATCH http://localhost:3000/users/1
 Content-Type: application/json
 
-### Post user
+### Delete user
 DELETE http://localhost:3000/users/1
+Content-Type: application/json
+
+### Delete user
+DELETE http://localhost:3000/users/userId/memo/memoId
 Content-Type: application/json

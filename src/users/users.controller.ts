@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, BadRequestException, NotFoundException, Header, Redirect, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, BadRequestException, NotFoundException, Header } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -17,12 +17,9 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  @Get('redirect/docs')
-  @Redirect('https://docs.nestjs.com', 302)
-  findOne(@Query('version') version) {
-    if (version && version === '5') {
-      return { url: 'https://docs.nestjs.com/v5' };
-    }
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.usersService.findOne(+id);
   }
 
   @HttpCode(202)
@@ -34,5 +31,13 @@ export class UsersController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
+  }
+
+  @Delete(':userId/memo/:memoId')
+  deleteUserMemo(
+    @Param('userId') userId: string,
+    @Param('memoId') memoId: string,
+  ) {
+    return `userId: ${userId}, memoId: ${memoId}`
   }
 }
