@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, BadRequestException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, BadRequestException, NotFoundException } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -19,8 +19,10 @@ export class UsersController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    if ( +id < 1) {
+    if ( +id === 0) {
       throw new BadRequestException('id는 0보다 큰 값이어야 합니다.');
+    } else if ( +id < 0) {
+      throw new NotFoundException('id 값을 찾지 못하였습니다.')
     }
 
     return this.usersService.findOne(+id);
