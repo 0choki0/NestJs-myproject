@@ -33,4 +33,9 @@ export class UsersController {
     console.log(userId);
     return;
   }
+
+  @Delete(':id')
+  remove(@Param('id') id:string) {
+    return this.usersService.remove(+id);
+  }
 }
