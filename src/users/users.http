@@ -1,28 +1,27 @@
-### Post users
+### dto 테스트 - create
 POST http://localhost:3000/users
 Content-Type: application/json
 
 {
   "name": "test-name",
-  "email": "test@gmail.com"
+  "email": "test@email.com",
+  "password": "test-password"
 }
 
-### Get users
-GET http://localhost:3000/users
+### dto 테스트 - email 인증
+POST http://localhost:3000/users/email-verify?signupVerifyToken=test_token
 Content-Type: application/json
 
-### Get user
-GET http://localhost:3000/users/1
+
+### dto 테스트 - 로그인
+POST http://localhost:3000/users/login
 Content-Type: application/json
 
-### Patch user
-PATCH http://localhost:3000/users/1
-Content-Type: application/json
+{
+  "email": "test@email.com",
+  "password": "test-password"
+}
 
-### Delete user
-DELETE http://localhost:3000/users/1
-Content-Type: application/json
-
-### Delete user
-DELETE http://localhost:3000/users/userId/memo/memoId
+### dto 테스트 - 회원 정보 조회
+GET http://localhost:3000/users/user-id
 Content-Type: application/json
