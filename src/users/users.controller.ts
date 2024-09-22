@@ -9,7 +9,10 @@ export class UsersController {
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+    const { name, email } = createUserDto;
+    const result = this.usersService.create(createUserDto);
+
+    return result;
   }
 
   @Get()
