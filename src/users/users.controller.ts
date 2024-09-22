@@ -3,7 +3,7 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { VerifyEmailDto } from './dto/verjfy-email.dto';
 import { UserLoginDto } from './dto/user-login.dto';
-import { UserInfo } from './dto/user-info.dto';
+import { UserInfo } from './userInfo';
 
 @Controller('users')
 export class UsersController {
@@ -13,7 +13,8 @@ export class UsersController {
 
   @Post()
   async create(@Body() dto: CreateUserDto): Promise<void> {
-    console.log(dto);
+    const { name, email, password } = dto;
+    await this.usersService.createUser(name, email, password);
   }
 
   @Post('email-verify')

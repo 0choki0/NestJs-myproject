@@ -1,3 +1,0 @@
-### practice provider
-GET http://localhost:3000/practice-provider
-Content-Type: application/json
